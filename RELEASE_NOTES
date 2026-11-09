@@ -1,0 +1,1504 @@
+pyglet 2.1.19
+
+Bugfixes
+--------
+- build: Update pyproject to ensure misc files are still included with flit 4+
+
+
+pyglet 2.1.17
+
+Bugfixes
+--------
+- math: Fix Mat3.__invert__ returning the transpose of the inverse. (#1491)
+- text: Fix text selection and caret positioning.
+- window: Preserve fractional refresh rates on Xlib and Win32 displays. (#1496)
+- event: Use weak references consistently for event methods. (#1506)
+
+Improvements
+------------
+- math: Add Vec2.cross method. (#1467)
+- media: Add compatibility for FFmpeg 9.0.
+- build: Permit building with flit core 4. (#1490)
+
+
+pyglet 2.1.16
+
+Bugfixes
+--------
+- math: Fix Mat3.scale and Mat4.translate to match Mat4 conventions. (#1460)
+- math: Fix Mat4.scale to use all values, not only diagonals. (#1463)
+- text: Route glyph placements to avoid accumulation errors. (#1450)
+- media: Backport ffmpeg fixes from pyglet 3.0. (#1459)
+
+
+pyglet 2.1.15
+
+Bugfixes
+--------
+linux.fontconfig: Fix incorrect FcFreeTypeQueryFace argument. #1454
+
+Improvements
+------------
+media: Improved support for 32bit audio, and enhanced capability detection and handling. #1415
+docs: Add missing includes for gui.Frame. #1444
+docs: Update paragraph spacing documentation.
+docs: Update details about supported Python versions. #1434
+docs: Add section on drawing VertexLists, and usage examples.
+
+
+pyglet 2.1.14
+
+Bugfixes
+--------
+shapes: Handle ZeroDivisionError and domain error when calculating miter scale (#1418)
+window: On macOS, fix RecursionError when resizing Windows. (#1421)
+text: Fix larger sized characters causing wrap issues. (#1426)
+
+Improvements
+------------
+typing: Fix the Label type hints for font_family. (#1407)
+typing: Add type hints to the Quaternion.from_mat* methods. (#1406)
+typing: Provide concrete typing for Window based on selected platform. (#1409)
+docs: Fix typo. (#1416)
+
+
+pyglet 2.1.13
+
+Bugfixes
+--------
+shapes: fix rotation behaviour of Sector when later setting radius/angle/etc. (#1405)
+window.win32: check Windows version before importing shcore. (#1402)
+gui.PushButton: fix missing argument in on_mouse_leave handler. (#1397)
+
+
+pyglet 2.1.12
+
+Bugfixes
+--------
+shapes: On vertex_list creation, ensure vertex data is initialized for rotation.
+
+
+pyglet 2.1.11
+
+Changes
+-------
+shader: Add some missing Uniform type definitions that were missed for less common types. #1380
+ffmpeg: Remove some missing attributes (libavformat version loading) that have been removed in FFMpeg 8.0.
+
+Bugfixes
+--------
+media.ffmpeg: Fix source padding issue for some sources. #1386
+window.win32: Fix memory address issues when queuing events during Windows OS window creation. #1382
+font.dwrite: Fix bug in font_files indixing (use first object, not font_fact index).
+
+
+pyglet 2.1.10
+
+Changes
+-------
+media: Add support for FFmpeg 8.0 (#1365)
+window: Update default dpi_scaling option to "platform". (#1383)
+window: Convert the Window event queue to a deque. (#1362)
+input.evdev: Do not attempt to reuse Controller instances on re-connect, as naming conflicts can occur.
+
+Bugfixes
+--------
+text: fix typing of Label.__init__'s align argument. (#1361)
+text: Update the passed args for attributed text. (#1379)
+shader: Fixed number of elements for GL_FLOAT_MAT3 (9, not 6) in pyglet.graphics.shader._uniform_setters. (#1364)
+
+
+pyglet 2.1.9
+
+Changes
+-------
+docs: Improve missing or underdeveloped math doc (#1295)
+input: Add new Controller properties for polling - Controller.dpad, Controller.leftanalog, Controller.rightanalog Vec2s.
+
+
+Bugfixes
+-------
+input.linux.evdev: Add support for the SYN_DROPPED event, to prevent "stuck" controls when events are lost.
+input.linux.evdev: Implement missing EvdevDevice.poll method.
+graphics.shaders: Fix attribute pointer issue for integers. (#1351)
+window.headless: Add missing abstract methods to HeadlessScreen (#1350)
+
+
+pyglet 2.1.8
+
+Changes
+-------
+docs: Improve camera example documentation. (#1326)
+gl: Add type hints to GL functions. (#1237) (#1325)
+font: Add font shaping support to MacOSX.
+window: Add support for MacOSX to have transparent windows and overlays. (#1339)
+window: Add new `on_clipboard_copy` & `on_clipboard_paste` events, and add support to the Caret class. (#1313)
+examples: Add a `get_mouse_scale` helper method to the FixedResolution class.
+math: Remove `if` checks from `__matmul__` operations for small performance improvement.
+
+Bugfixes
+--------
+font: Fix get_text_size for DirectWrite to include trailing whitespaces.
+font: Cache glyphs based on unique ID and indices to reduce cache collions. (#1346)
+font: Fix issue with inline elements crashing in a non-multiline scenario. (#1346)
+media: Fix WMFDecoder delivering audio data as float. (#1315) (#1316)
+window: Fix bugs with transparent framebuffers for transparent windows. (#1333)
+window: Adjust software cursor scale factor for MacOS for HiDPI. (#1343)
+
+
+pyglet 2.1.7
+
+Changes
+-------
+event: Add EventDispatcher.post_event method for posting events to main thread
+window: Clamp width and height to minimum of (1,1) in internal resize events (#1322)
+window.mouse: Add __getattr__ to the MouseStateHandler (#1311)
+
+Bugfixes
+--------
+docs: Fix outbound link, cross-refs, and formatting for programming guide image page (#1318)
+input.Controller: fix Nonetype error if a mapping points towards a non-existing HAT Control
+math: fix bugged Vec methods (#1310)
+window: Fix window transparency for Windows OS.
+window: Fix X11 clipboard selection by not setting XlibWindow._clipboard_str in self.get_clipboard_text
+
+
+pyglet 2.1.6
+
+Bugfixes
+--------
+shapes: revert color -> colors in default shader.
+shaders: fix UniformBlock introspection for creating an array of single types, like float.
+shaders: in compute_shader example, fix incorrect assumption that bind_image_texture used uniform location.
+
+
+pyglet 2.1.5
+
+Changes
+-------
+- docs: Add shape guide crossrefs (#1291)
+- Updated the opengl torus example to work with the material updates in 3.1 (#1281)
+- Add homebrew lib search location for Apple Silicon.
+- Bump Qt example to use PySide6 and PyQt6 (#1305)
+
+Bugfixes
+--------
+- shapes.earcut: Fix int casting bug for large polygons (#1282)
+- Linux: Use dotclock instead of rate in xlib vidmoderestore (#1285)
+- tests: Fix many interactive tests, and other test fixes
+- app: Fix run(None) crashing on macOS
+- docs: Correct the docstring for the start_angle of an arc to indicate it is in degrees and not radians (#1290)
+- controller: Fix dpad bias for controller.min > 0 (#1296)
+- controller: Only use 0x1 desktop page axis for controller indexing on macOS (#1297)
+- gui: Fix the position range of the slider knob when repositioning the slider (#1299)
+
+
+pyglet 2.1.3
+
+Changes
+-------
+- window: Change the default znear/zfar to (-8192, 8192).
+- docs: Fix top-left version display and copyright auto-generation (#1264).
+- docs: fixes in the quickstart guide, and lots of other cleanups.
+- clean up legacy super() call syntax around the codebase.
+
+Bugfixes
+--------
+- shapes: disable depth testing by default, due to usability issues.
+- window.xlib: prevent crash if initial configuration notify event has invalid width/height.
+- window.xlib: fix screen mode showing dotclock instead of Hz.
+- model: fix the (undocumented) Sphere and Cube test shapes.
+- examples.model.fpscamera: don't normalize the movement input.
+- window: Fix ImageMouseCursor positioning not adapting to scaling (#1278).
+
+
+pyglet 2.1.2
+
+Bugfixes
+--------
+- shapes: disable depth testing by default, due to usability issues.
+
+
+
+pyglet 2.1.1
+
+Bugfixes
+--------
+- input.Controller: Fix DirectInput dpad (hat control) regressions.
+- input.Controller: Fix sign calculation bug for devices with analog axis as dpad.
+
+
+pyglet 2.1.0
+Major Release
+
+Changes
+-------
+- Changed default argument order to bring consistencty to text Labels and Layouts.
+- For API consistency with other modules, Shapes now use degrees for all applicable objects.
+- Controller events dispatch `Vec2`s for analog sticks and directional-pad movement.
+- The `pyglet.canvas` module has been renamed to `pyglet.display`.
+
+Features
+--------
+- More control over DPI scaling for Hi-DPI displays (see pyglet.options.dpi_scaling).
+- Objects in the math module (Vec2/3/4, Mat3/4, Quaternion) are now all immutable and hashable.
+- Shapes now offer a Z property for basic depth sorting.
+
+
+pyglet 2.0.21
+
+Bugfixes
+--------
+- font: Fix DirectWrite bitmap width being cut off for some fonts. (#1253)
+
+
+pyglet 2.0.20
+
+Changes and Improvements
+------------------------
+- media: add support for FFmpeg 7.x
+
+
+pyglet 2.0.19
+
+Changes and Improvements
+------------------------
+docs: update vertexbuffer.py module docstrings
+
+Bugfixes
+--------
+- macos: stop F5 from autocompleting (#1229)
+- input.base: Don't skip Axis Controls without names
+- window.xlib: don't send on_mouse_release events for scrolling (#1235)
+
+
+pyglet 2.0.18
+
+Changes and Improvements
+------------------------
+- shader: add support for OpenGL structures in UBO's (#1212)
+- win32.com: get libs/win32/com.py ready for incoming 3.13 changes #1199
+- docs: fix various typos, and example code to align with docs #1200, #1201
+- text.document: add new AbstractDocument.append_text method for more efficient end-of-text additions #1182
+- tests: fix issues with broken tests on macOS.
+- input.macos: add missing axis alias for modern controllers (Stadia, newer XBOX One)
+- gui.NinePatch: Add a new NinePatch.create_around_layout class method
+- typing: add py.typed file #1205
+
+Bugfixes
+--------
+- shader: fix matrix uniform assignment #1194
+- text: fix missing caret top level import
+- text.layout: fix updating anchor on the X axis #1213
+- text.layout: move get_line_count function into the base TextLayout class
+- window.macos: fix blinking cursor in bottom left of window #1204
+- examples: fix rectangle not appearing in text_input example
+- macos: fix missing dealloc for text view.
+- macos: fix some deallocation issues when creating multiple windows.
+- macos: fix event loop termination exiting the entire app.
+- macos: fix focus being stolen by other apps during launch. (#1211)
+- macos: fix error about pygletUpdate when closing a window. (#1219)
+- macos: fix function keys not registering. (#1220)
+- docs: move check for `sys.modules['sphinx']` into doc/conf.py to prevent conflicts with jupyter #1215
+
+
+pyglet 2.0.17
+
+Changes and Improvements
+------------------------
+- image: Use dedicated shader for blitting to fix blending issues. (#1170)
+- shapes: Add a way to set blend mode on initialization and after.
+- shapes: Add a get_shape_group function.
+- shapes: Add a way to change shape shader program.
+- pyglet.experimental: Add multi-texture sprite support. (#1166)
+- graphics.vertexbuffer: (internal) Rename buffer object `sub_data` to `commit` to better reflect it's usage. (#1186)
+- gui: Add on_mouse_enter/leave event handler to WidgetBase and use it in Buttons (#1190)
+- graphics.vertexdomain: Update program migration to its own function: update_shader.
+- graphics.vertexdomain: Changing programs no longer requires batch, as that doesn't change with a program change.
+- graphics.vertexdomain: Allow migration of shaders through deleting vertex lists.
+- graphics.vertexdomain: Remove `isinstance` check for VertexList and go off the class variable that is set.
+
+Bugfixes
+--------
+- image: Fix Texture3D.create_for_images method.
+- typing: Fix pyglet.options type checking.
+- shader: Fix UBO arrays. (#1168)
+- sprite: Fix paused animation frame index. (#1180)
+- window: win32: Fix Window.set_icon.best_icon. (#1183)
+- options: Fix audio and vsync env vars. (#1185)
+- audio: Remove `PreciseStreamingSource`; Move audio buffering back into Players. (#1175)
+
+
+pyglet 2.0.16
+
+Changes and Improvements
+------------------------
+- library-wide overhaul of docstrings, and addition of type hints. (#1084)
+- sprite: Add `blend_mode` property to change BLEND_MODE without needing to re-create the Sprite.
+- sprite: Deprecate `AdvancedSprite`, and merge functionality into default `Sprite` class.
+- sprite: Add `get_sprite_group` method, allowing easy usage of custom SpriteGroups in subclasses.
+- image: Code for `Texture.blit` has been inlined. (#1109)
+- shapes: Concave polygon can be drawn by earcutting a polygon. (#1121)
+- shapes: Add Rounded Rectangle shape. (#1131)
+- shapes: Add `thickness` property to `Box` shapes.
+- libs: Add `pyglet.libs.ioctl` module, to consolidate shared code on Linux.
+- gui: Add a pseudo "nine-path" Sprite-like class for variable sized windows.
+- math: Add `match` statement support to Vec classes.
+- graphics: Don't re-create a Shader each call to `draw` or `draw_indexed`.
+- pyglet.options: Add runtime typing enforcement to user-set options.
+- pyglet.experimental: Add simple GPU-based particle system in `particles` module.
+- text.layout: Update `on_style_text` to be more efficient.
+
+Bugfixes
+--------
+- window.macos: Fix constant appearance of blinking caret on M1 based Macs. (#1160)
+- window.xlib: Avoid XSet/UnsetICFocus calls when _have_utf8 is False. (#1049)
+- window.win32: Fix application not updating timers and redrawing during moves. (#1125)
+- shapes: Add missing `thickness` property to Box.
+- shapes: Add missing docstrings to `Arc` `thickness` property.
+- shapes: Fix ShapeBase.group setter to only migrate batch when batch is not None. (#1090)
+- shapes: BezierCurve: fix miter artifacts from #1134. (#1155)
+- examples: Fix "more" button outline in soundspace example. (#1085)
+- tests: Fix a rarely-failing audio time test. (#1092)
+- input.controller: Fix accidentally missed mappings.
+- graphics.shader: Add missing parent program reference in Uniforms (#1103)
+- graphics.domain: Fix VertexList.resize method.
+- text.directwrite: Fix crash with dw_legacy_naming. Check if a custom collection exists before find a font with it.
+
+
+pyglet 2.0.15
+
+Changes and Improvements
+------------------------
+- font: Clean up win32 legacy font renderer to remove unused or outdated code.
+- font: Boxes are now primary update method for TextLayout instead of relying on the vertex_list of the TextLayout.
+- font: More typing additions.
+- gui.widgets: Add _set_enabled hook (#1073)
+- shapes: Add missing BezierCurve thickness property.
+- graphics: Re-raise error for attributes during shader creation with better error descriptions. (#1076)
+- docs: Start adding GUI section to the programming guide.
+- typing: Add stub file for init package to workaround IDE inspection/completion issues with lazy loading modules. (#1077)
+- examples: Add more visual feedback to the Controller example
+
+Bugfixes
+--------
+- Xaudio2: Fix missing `)` to POINTER which causes XAudio2 to fail to be imported. (#1068)
+- font.caret: Fix caret positioning and moving the cursor during cursor selection. (#932)
+- input.controller: User added mappings should take higher priority over default mappings.
+- input.controller: Properly handle inverted axis as dpad (#1078)
+- shapes: Added a None check to ShapeBase.delete (#1075)
+- shapes: Fix Line being off-centered when setting thickness #1083
+- image: Fix BufferManager.get_depth_buffer() for GL3+.
+
+
+pyglet 2.0.14
+
+Changes and Improvements
+------------------------
+- shapes: Add new MultiLine shape. (#1057)
+- font: Enhance UserDefinedFonts to allow using custom font mapping functions (#1067)
+- typing: Improve Xaudio2 COM type hints (#1062)
+- text: Raise Exception when attempting to change IncrementalTextLayout.rotation, as it's not supported.
+- tests.integration: Add simple sanity tests for creation of all Label, Document, and Layout objects.
+
+Bugfixes
+--------
+- input.win32: Fix broken xinput get_devices and get_controllers methods (#1060)
+- shapes: Fix incorrect BezierCurve positioning, and Line rotation. (#1084)
+- app: Fix CFSTR.release() bugs in macOS event loop. (#1059)
+- font: Fix missing annotation import causing a crash for GDI.
+- text.caret: Caret now properly works with other Layout content valigns other than top.
+- text.layout: Ensure all TextLayouts have consistent argument ordering.
+- text.layout: Fix left, right, bottom, top Layout parameters not being correct.
+- text.layout: Fix changing anchor not updating the translation.
+- text.layout: Fix for lines getting garbled in an IncrementalTextLayout when using a content-valign other than top.
+- text.layout: Fix IncrementalTextLayout setting visible line count instead of total line count.
+- text.layout: Fix translation sometimes not updating all of the GlyphBoxes.
+- text.layout: Fix _update_anchor not updating vertex lists of IncrementalTextLayout.
+- text.layout: Fix _update_flow_glyphs not updating line count when it breaks it's loop.
+- text.layout: Fix deleting lines at the end of a multilined IncrementalTextLayout not reducing view size.
+- text.layout: Fix shader to conform to new anchors.
+- text.layout: Rotation no longer requires destroying the whole layout, it now just updates attributes.
+- text.layout: Anchor bottom fix for Scrollable/Incremental.
+
+
+pyglet 2.0.13
+
+Withdrawn due to Label creation bug.
+
+
+pyglet 2.0.12
+
+Bugfixes
+--------
+- graphics: fix Batch/Group migration.
+
+
+pyglet 2.0.11
+
+Changes and Improvements
+------------------------
+- media: major internal audio cleanup, bugfixes, and improvements on all platforms.
+- various typing and documentation improvements.
+- math: add Quaternion class with common methods.
+- shader: add support for setting and getting arrays in a Uniform via wrapper. (#1005)
+- shapes: add radius property get and set to Arc class. (#1013)
+- sprite, shapes: Avoid extra step of updating vertex list after creation. (#1016)
+- shapes: allow setting the line thickness of Arc and BezierCurve shapes. (#1028, #1030)
+- text: add Caret.select_all method.
+- text: performance improvements on instantiation, visibility, anchors, positions. (#1004)
+- text: add left, right, bottom, top attributes. (#1004)
+- text: add program argument for custom shaders. (#1037)
+- text: add get_as_texture function to render text to a new texture. (#1037)
+- font: skip pre-parsing all system fonts to improve speed. Check only when needed.
+
+Bugfixes
+--------
+- macOS: prevent crash when scanning for Controllers if device.transport is None. (#995)
+- input: avoid crash when encountering controls with invalid min/max values. (#986)
+- xlib: fix missed argument in window drag.
+- media: fix bad behavior when clearing XAudio2AudioPlayer. (#1011)
+- pyglet.__init__: don't install debug_trace until after module proxies #1046
+- media: numerous fixes to race conditions and deadlocks across all backends.
+- experimental: Fix incorrect texture UVs and final positioning for GeometryShader Sprite.
+- image: add missing binding calls for blit_to/texture methods.
+
+
+pyglet 2.0.10
+
+Changes and Improvements
+------------------------
+- sprite: moving Sprites is now about 35% faster (as tested on R5 5600X)
+- gui: Add TextEntry.focus property to allow programmatic focus control
+- gui: Allow set TextEntry.width and TextEntry.height
+- Window: Add experimental Window.get_clipboard_text and Window.set_clipboard_text methods
+- experimental: Add new pyglet.experimental package for easier wider testing of new ideas
+- experimental: Add `geoshader_sprite.py` that is more complex, but faster than the standard Sprite
+- experimental: Add `net` module with Server/Client proof of concept
+- tests: Add new interactive spot test to visually confirm shapes are working as expected
+- shapes: Move rotate functionality to ShapeBase class, and allow all shapes to rotate
+- VertexDomain: bind all buffers to VAO in __init__, and avoid binding each draw
+- gl.Context: Add a new cached `Context.create_program` method to assist in shader reuse
+- examples.model.fpscamera: fix drifting input, and other improvements
+- contrib.qt_sprite_preview.py: Modify to allow using either PySide2 or PyQt5 (#959)
+- examples: Carry over the soundspace example (#972)
+- media: The "Silent" audio driver now behaves more like a real driver
+- text: Add RGB color setter fallback for HTML labels, assuming 255 alpha
+- shapes: Add a new (unfilled) Box shape
+- gl: Take threading into account when deleting OpenGL objects (#988)
+
+Bugfixes
+--------
+- gl: Stop storing doomed VAOs in object space (#918)
+- xlib: Do a better job of detecting UTF8 capability (#520)
+- media.Player: for Video playback, set context when updating Textures
+- shapes: fix re-positioning of BezierCurve and Polygon shapes
+- media.codecs: Fix use-after-frees and memory leaks in the wmf decoder #962
+- text.Caret: Fix caret blinking (#971)
+- text.layout: Fix incorrect background color vertex data
+- Windows: Implement fix for ctypes.wintypes.BYTE in Python < 3.12 (#977)
+- input.evdev: Fix for pypy3 by removing usage of os.readv
+
+
+pyglet 2.0.9
+
+Changes and Improvements
+------------------------
+- app: Passing `None` to pyglet.app.run will disable automatic Window redraws.
+- window: Add a Window.draw method to help when manually scheduling Window redraws.
+- shapes: Add a `border` thickness setter to BorderedRectangle.
+- docs: Various docstring improvements and cleanups.
+- examples: Add minimal ComputeShader example.
+
+Bugfixes
+--------
+- media: Fix multiple on_eos events from OpenAL players, and major MediaThreads overhaul.
+- macos: Fix on_key events (#898)
+- macos: Workaround for CGDisplaySetDisplayMode bug
+- Xaudio2: Fix packet refill crash when removing a player that was deleted mid callback.
+- gui: Fix incorrectly named on_mouse_scroll arguments (#904).
+
+
+pyglet 2.0.8
+
+Changes and Improvements
+------------------------
+- Add missing OpenGL extensions
+- Add support for FFmpeg 6.0
+- Sprite width & height properties are now settable, allowing scaling by pixels
+- documentation: updates to migration guide, media, and events
+- shapes: Allow checking if a point is in a shape, using the `in` operator
+
+Bugfixes
+--------
+- clock: Fix clock swallowing ReferenceErrors
+- documentation: fix some sphinx build issues on ReadTheDocs
+- font: multiple macOS fixes, including issues with double-byte fonts
+- input: ensure Xinput controllers dispatch events on the main thread
+
+
+pyglet 2.0.7
+
+Changes and Improvements
+------------------------
+- gui: Add alpha value to the Caret's default color.
+- docs: Some minor rewording of sections, and type fixes.
+
+Bugfixes
+--------
+- Fix broken struct format strings in png and ttf decoders.
+- text: Clear Group cache when a Layout's Group is changed.
+- Fix incorrect string formatting in the timer.py example.
+
+
+pyglet 2.0.6
+
+Changes and Improvements
+------------------------
+- Initialize AudioDriver when media module is imported, prevent pause on first sound playback.
+- New TextureArrayBin class for managing TextureArray based atlases.
+- macOS: implement "file_drop" support for Windows.
+- macOS: add support for CoreAudio, allowing native mp3, aiff, etc. support without FFMpeg.
+- macOS: alternative NSApplication based event loop, to avoid missing events on M1 Macs. #794
+- text: Caret supports RGBA color, in line with other pyglet objects.
+- Windows: New context manager for handling of safer handling of platform resources.
+
+Bugfixes
+--------
+- Fix numerous bugs remaining with IncrementalTextLayout, with translation, caret, etc. #786
+- Windows: fix incorrect on_resize values.
+- macOS: numerous memory leak fixes.
+- shader: add missing sampler type definitions.
+- Add missing docstrings, and various documentation fixes.
+
+
+pyglet 2.0.5
+
+Changes and Improvements
+------------------------
+- windows.key: add support for extended function keys
+- Windows now uses "Apartment Threaded" mode for better compatibility with other libraries.
+- image: allow blanking newly created Textures (skipped by default when creating from image).
+
+Bugfixes
+--------
+- input.macos: Fix ControllerManager hot-plugging on macOS.
+- font.windows: Fix 32bit crashes with DirectWrite font backend.
+- math: Fix incorrect calculation in Mat4.look_at method.
+- image: Fix blitting from regions, caused by invalid unpacking settings.
+
+
+pyglet 2.0.4
+
+Changes and Improvements
+------------------------
+- input.win32: ControlManager now supports both DirectInput and XInput devices.
+- input: Many cleanups and reorganization.
+- math: Add Vec2.reflect method.
+- shapes: Add new BezierCurve shape.
+- gl: Add support for GL sync functions.
+
+Bugfixes
+--------
+- gui: Prevent two TextEntry widgets from being active at the same time. #747
+- win32: Fix broken lib debug, and multiple related bugs due to deprecated functions.
+- input: Controller mappings now indexed correctly on macOS and Windows.
+
+
+pyglet 2.0.3
+
+Changes and Improvements
+------------------------
+- shapes: Batch and Group can now be changed on shapes after instantiation, similar to Sprites.
+- font: DirectWrite & Freetype fonts now expose a `filename` attribute. macOS not yet implemented.
+- Windows: DirectWrite fonts parse font names in a more correct manner. Setting `pyglet.options['dw_legacy_naming']`
+  to True will restore the old behavior, but this may be removed at a later date.
+- math: Vec types can now be updated with slices (`velocity[:] = 1, 2`)
+- math: Matrix operations now behave more like GLSL.
+
+Bugfixes
+--------
+- macOS: fix crash when supplying OpenGL Config without explicit major/minor versions #739
+- To prevent crashing on many OpenGL drivers, Textures are no longer initialized with empty data.
+- fixed `font_comparison.py` example.
+
+
+pyglet 2.0.2
+
+Bugfixes
+--------
+- Fix Config.opengl_api being always set to None.
+- Windows: fix Display.get_default_screen() always returning the first index.
+
+Changes
+-------
+- Remove legacy Xlib backend code.
+- Add initial support for Compute Shaders.
+- Windows: a high performance event timer is requested by the PlatformEventLoop.
+
+
+pyglet 2.0.1
+
+Bugfixes
+--------
+- Windows: only enable DirectWrite color font for supported OSes.
+- gui: don't unset TextEntry widget focus on mouse motion.
+- image: Prevent BufferManager crash when stencil buffer query fails #703
+- macOS input: fix broken get_guid link for Controllers.
+- math: fix Mat4.look_at. #708
+- shader: fix vertex_list passing id instead of self to Batch.get_domain
+- shapes: fix crash when setting Arc.visible = False
+
+Changes
+-------
+- shapes: add Arc.start_angle setter
+- graphics: Various default Group changes to help improve Group consolidation
+
+
+pyglet 2.0.0
+Major Release
+
+Changes
+-------
+- pyglet has been upgraded to use use OpenGL 3.3+ core functionality.
+- All high level modules have been internally updated to use modern OpenGL.
+- A large number of cleanups and optimizations.
+
+Features
+--------
+- New `pyglet.math` module including common Matrix and Vector operations.
+- New `pyglet.graphics.shader` module for easily managing Shader objects.
+- New OpenGL bindings, and binding tools.
+- New Game Controller API for modern game controllers, including rumble and automapping.
+- New Framebuffer classes.
+
+
+pyglet 1.5.27
+
+Bugfixes
+--------
+- Windows - stop setting HWND_TOPMOST for fullscreen windows
+- obj decoder - Fix GL_SHININESS (Ns) value parsing
+- Fix broken property setter for shapes.Polygon (#676)
+- Fix keys getting "stuck" in KeyStateHandler when Window loses focus (#682)
+
+
+pyglet 1.5.26
+
+Bugfixes
+--------
+- Windows - Backport WIC codec changes from 2.0
+- Fix library loading when passing multiple library names.
+
+
+pyglet 1.5.25
+
+Bugfixes
+--------
+- Windows - Prevent ImportError when attempting to load more than one DLL version.
+
+
+pyglet 1.5.24
+
+Features
+--------
+- Add initial support for FFmpeg 5.0
+- Windows - The GDI font renderer now supports Unicode font names.
+
+Bugfixes
+--------
+- Windows - Fix `on_resize` event not dispatched when `set_size` is called.
+- Documentation updates, fixed links, and corrections.
+- Windows - Fix crash when font characters are more than one codepoint in length.
+
+
+pyglet 1.5.23
+
+Features
+--------
+- Windows - Add `win32_disable_shaping` option. This can improve font performance when shaping isn't required.
+- Backport the latest pyglet.math module changes from the development branch.
+
+Bugfixes
+--------
+- Linux - Fix crash when Gstreamer Gst bindings are not installed.
+- Fix math.Vec4.clamp method.
+
+
+pyglet 1.5.22
+
+Features
+--------
+- If the PyOgg module is installed, it can be used for loading various Vorbis audio formats.
+- Add a new CameraGroup example, to show implementing a Camera with pyglet's Groups.
+- Add `angle` and `start_angle` property/setter to `shapes.Sector`.
+- Windows - new WMF based encoder for faster saving of common image formats.
+
+Bugfixes
+--------
+- Fix indexing error when setting text.Label.opacity (#481)
+- Windows - Fix shift modifier + exclusive mouse mode (#472)
+- Linux - Prevent non-Tablet devices from being detected as Tablets (#491)
+- Windows - Prevent distortion with multiple XAudio2 audio sources (#515)
+- Fix frame dropping bug with FFMpeg decoder.
+- Windows - Fix Video alpha channel for WMF decoder.
+- Various documentation and docstring fixes. Thanks everyone!
+
+
+pyglet 1.5.21
+
+Features
+--------
+- A new MovableFrame that allows repositioning Widgets when a specified key modifier is held.
+- Text Layouts now have `opacity` and `visible` attributes, similar to Sprites.
+- Add new shapes.Ellipse class.
+
+Bugfixes
+--------
+- Xlib - don't enable certain Window options if transparency is not enabled. (#454)
+- Windows - Fix issue with some fonts where glyphs overhanging their advance would be cut off.
+
+
+pyglet 1.5.20
+
+Features
+--------
+- Experimental support for transparent and overlay windows on Linux and Windows.
+- Shapes - Allow rotation and changing of border color for the BorderedRectangle.
+
+Bugfixes
+--------
+- Xlib - Fix the mouse Y position being off by 1-pixel.
+- Windows - Fix gapless audio playback on the XAudio2 backend.
+
+
+pyglet 1.5.19
+
+Features
+--------
+- Add new 'Sector' class to shapes module, for creating sectors of a circle.
+
+Bugfixes
+--------
+- Ensure that the FFmpegDecoder returns the requested number of bytes.
+- When subclassing EventHandlers, ensure that possible TyperErrors give correct feedback.
+- Fix missing name attribute on FreeTypeMemoryFace object when adding fonts.
+
+Maintenance
+-----------
+- Re-introduce background threads for refilling Player buffers.
+- Allow directly setting Widget values.
+- Add docstrings for gui.widgets.
+- Refresh of experimental/win32priority.py.
+
+
+pyglet 1.5.18
+Bugfix release
+
+Bugfixes
+--------
+- If XAudio2 device creation fails, catch exception so that the next driver can be tried.
+- Fix dangling file pointers in GStreamer decoder.
+- Expose font.name attribute to show the font family name.
+- Un-associate queued Source from a deleted Player instance (#256)
+- Fix circular import when trying to create a Windows in 'headless' mode.
+- Un-associate StreamingSources from deleted Player instances (#256)
+- Update pypng lib to avoid deprecated functions (#405)
+
+
+pyglet 1.5.17
+Bugfix, feature and maintenance release
+
+Bugfixes
+--------
+- FFmpeg decoder add FF_INPUT_BUFFER_PADDING_SIZE to buffers.
+- Add missing DI8DEVTYPE_SUPPLEMENTAL joystick device type.
+- Fix bool clamping causing crash with DirectWrite text decoder.
+
+Maintenance
+-----------
+- Change IncrementalTextLayout to use glScissor instead of glClipPlane.
+- Raise warning on Window creation if the GPU drivers do not support OpenGL 2.0
+
+Features
+--------
+- Add a new `shapes.Star` shape.
+
+
+pyglet 1.5.16
+Bugfix and feature release
+
+Bugfixes
+--------
+- 3d model obj decoder supports multiple material types
+- Fix GStreamerSources not being garbage collected #283
+- Fix ScrollableTextLayout not respecting anchors/alignment.
+
+Features
+--------
+- New DirectWrite based font loader. Enable with `pyglet.options["advanced_font_features"] = True`
+- Add `position` property to Text Layouts, to mimic other classes.
+
+
+pyglet 1.5.15
+Bugfix and maintenance release
+
+Bugfixes
+--------
+- shapes.Circle segment calculation will always use a minimum of 14 segments.
+- shapes.Arc is now made from line segments, and by default has unconnected ends.
+- Windows - Use the internal keystate to determine the mod shift rather than relying on GetKeyState
+  which relies on another event that may be called after WM_INPUT.
+
+Maintenance
+-----------
+- Various Headless backend and EGL work.
+
+
+pyglet 1.5.14
+Bugfix and feature release
+
+Bugfixes
+--------
+- Fix interlaced mp3 decoding in GStreamer backend.
+- Skip functions marked as OBJC_ARM64_UNAVAILABLE for new ARM Macs.
+
+Features
+--------
+- Add a `WaveEncoder` for saving audio Sources to disk.
+
+
+pyglet 1.5.13
+Bugfix and feature release
+
+Bugfixes
+--------
+- Fix crash on looping video with no sound (#322)
+- OSX: Replace remaining usage of `find_library` to fix Big Sur issues (#332)
+- Windows: Fix default orientation for the XAudio2 listener.
+
+Features
+--------
+- Add new `shape.Triangle` shape.
+- Windows: `on_key_press` now dispatches unique events for left/right Shift keys.
+
+
+pyglet 1.5.12
+Bugfix and feature release
+
+Bugfixes
+--------
+- Remove usage of deprecated `parser` module. (#312)
+
+
+pyglet 1.5.11
+Bugfix release
+
+Bugfixes
+--------
+- Added hardcoding of library paths for Big Sur temporary fallback.
+- Removed some legacy Python 2 code from the documentation.
+
+
+pyglet 1.5.10
+Bugfix release
+
+Bugfixes
+--------
+- Fix library loading on OSX Big Sur. Currently this only works with the system version of Python.
+  Non OSX system versions will not yet work, pending upstream fixes: https://bugs.python.org/issue41100
+
+
+pyglet 1.5.9
+Bugfix and feature release
+
+Bugfixes
+--------
+- Explicitly cast media.synthesis data to bytes to prevent issues on some audio drivers.
+- Refactor WIC module to work with new com module. (#298)
+- Prevent crash when setting `shapes.Circle.visible`. (#294)
+- Remove deprecated `tostring` calls in PIL/PNG decoders to prevent crash on Python 3.9. (#295, #302)
+
+Improvements
+------------
+- Add new Xaudio2 driver. (#288)
+- Refactor pyglet's lazy module loading to better support code inspection.
+- Added new `TextEntry` widget.
+
+
+pyglet 1.5.8
+Bugfix and feature release
+
+Bugfixes
+--------
+
+Improvements
+------------
+- Added new experimental `gui` module. Currently this only contains basic widgets.
+- Added new `Group.visible` property, to toggle rendering of entire Groups when used in a Batch.
+- Added `Sprite.paused` and `Sprite.frame_index` helper properties for controlling Animations.
+- Reorganized the examples folder.
+- Added new CenteredCamera example.
+- Backport pyglet.math from 2.0, for more exposure and testing.
+- Consolidate Codec logic into base class to reuse among various modules.
+
+
+pyglet 1.5.7
+Bugfix release
+
+Bugfixes
+--------
+- Fix crash when no audio device is available.
+- Prevent `__del__` spam in DirectSound buffers and Wave decoder.
+- Explicitly cast warnings.warn message to a str to prevent numba error.
+
+
+pyglet 1.5.6
+Bugfix and feature release
+
+Bugfixes
+--------
+- Fix infinite recursion error on OSX. (#5)
+- The on_mouse_scroll event no longer clamps to int, preventing lost motion on trackpads.
+- Prevent traceback when DirectSound buffers are garbage collected on exit.
+- Fix StaticSource playback with WMF decoder (streaming=False).
+- Fix colorspace for WMF video decoding.
+- Prevent crash on garbage collection for FFmpeg decoder.
+
+Improvements
+------------
+- New image decoder leveraging Windows Imaging Component (WIC).
+- TextureAtlas/Bins now have a `border` argument for leaving n-pixels of blank space around
+  images when adding. By default the `resource` module leaves a 1-pixel space around images.
+- Many small documentation fixes and corrections.
+
+
+pyglet 1.5.5
+Bugfix and feature release
+
+Bugfixes
+--------
+- GStreamer decoder clamped to 16bit sample width, since the default OpenAL backend on Linux does
+  not support anything higher.
+
+Improvements
+------------
+- shapes module: added `Circle.rotation` property and blending to standalone shape `draw` methods.
+- shapes module: added missing `delete` and `__del__` methods.
+- The ImageMouseCursor has a new `accelerated` parameter to allow custom mouse points to be drawn
+  natively on Windows and Linux.
+
+
+pyglet 1.5.4
+Bugfix and minor feature release
+
+Bugfixes
+--------
+- Avoid WMFDecoder crash when mixing pyglet with other toolkits. (#174)
+- Prevent EventDispatcher subclasses from hiding AttributeError exceptions.
+
+Improvements
+------------
+- Added `pyglet.graphics.shapes` module for creating simple 2D shapes.
+
+
+pyglet 1.5.3
+Bugfix release
+
+Bugfixes
+--------
+- Fix memory leak caused by not freeing stale buffers and textures.
+
+
+pyglet 1.5.2
+Bugfix and minor feature release
+
+Bugfixes
+--------
+- Fix WMF decoder for pre-Windows 8 systems.
+- Fix WMF decoder loading from file-like objects for Windows Vista.
+- Fix WMF decoder crashing when attempting to seek past file duration.
+
+Changes
+-------
+- Allow GStreamer and FFmpeg decoder to load from file-like objects.
+
+
+pyglet 1.5.1
+Bugfix and minor feature release
+
+Bugfixes
+--------
+- Fix issue with changing Label positions by fractional values.
+- Avoid performance issue due to unnecessary context switching with single Window programs.
+- Fix crash on Player.next_source when playing a video with no audio track.
+- Fix crash when disconnecting a Joystick on Windows.
+- Prevent media Players from seeking to negative timestamps.
+- Fix OpenAL audio driver not dispatching events.
+
+Changes
+--------
+- text.TextLayouts are no longer bound to int positioning.
+- Raise exception if attempting to import from legacy Python.
+- Add GStreamer decoder for compressed audio on Linux.
+- Add Windows Media Foundation decoder for compressed audio on Windows.
+
+Improvements
+------------
+- New "file_drops" Window argument to allow drag and drop of files. This is complimented
+  by a new `Window.on_file_drop` event, which returns the mouse position and file path.
+
+
+pyglet 1.5.0
+Bugfix and Maintenance release
+
+Bugfixes
+--------
+- Removed global dubug function access in __del__ methods to prevent smooth shutdown.
+- Fix regression not allow SourceGroups to be queued on Player objects. (#140)
+
+Changes
+-------
+- Support for Python 2 has been dropped. Python 3.5 is now the minimum supported version.
+
+
+pyglet 1.4.10
+Bugfix release
+
+Bugfixes
+--------
+- Explicitly set Window size in game example. (#116)
+- Prevent crash when checking if FFMpeg is available. (#121)
+
+
+pyglet 1.4.9
+Bugfix and small improvement release
+
+Bugfixes
+--------
+- Fix TextLayoutGroup consolidation when using custom Groups for Labels.
+- FFmpeg: Cast 'date' to string instead of int in file_info. (#109)
+- Fix ctypes error caused by incorrectly specifying a Union as an argtype. (#112)
+
+Improvements
+------------
+- Added a simple 2D Camera example to examples/camera.py in the repository.
+- OSX: OpenGL context creation is more lenient with requested versions.
+
+
+pyglet 1.4.8
+Bugfix release
+
+Improvements
+------------
+- Add support for `conda`-installed FFmpeg on macOS (#xx)
+
+Bugfixes
+--------
+- FFmpeg: fix an occasional crash during seek operation.
+- Revert Event Dispatcher changes from v1.4.7 due to possible bug.
+- Linux: Warn on failure to set vsync, instead of crashing.
+
+
+pyglet 1.4.7
+Bugfix and small improvement release
+
+Bugfixes
+--------
+- Allow creation of non-power-of-two compressed Textures. (#78)
+- Fix EventDispatchers suppressing `AttributeError`s. (#87)
+- Fix external lib loading on Windows under Python 3.8. (#90)
+
+Improvements
+------------
+- Windows: Add support for `Desktop Window Manager` composition for smoother rendering.
+- TextureAtlases allow a single pixel border to avoid rendering artifacts.
+- Add support for `conda`-installed FFmpeg on macOS (#92)
+
+
+pyglet 1.4.6
+Bugfix release
+
+Bugfixes
+--------
+- Fix PNG encoder saving upside-down images due to incorrect pitch. (#83)
+- pyglet.info shows more platform specific information.
+
+
+pyglet 1.4.5
+Bugfix and small improvement release
+
+Bugfixes
+--------
+- Fix Allocator creating orphaned regions.
+- Allow npot compressed texture loading.
+- Fix MachOLibraryLoader failing on lib names containing extra "."s.
+
+Improvements
+------------
+- Documentation has been rebased on the standard RTD theme.
+- Other documentation clarifications and improvements.
+- New `MouseStateHandler` convenience class.
+
+
+pyglet 1.4.4
+Bugfix release.
+
+Bugfixes
+--------
+- Fixed incorrect glXSwapIntervalEXT arguments for Xlib contexts.
+
+
+pyglet 1.4.3
+Bugfix release.
+
+Bugfixes
+--------
+- Fix crash due to inconsistent API when changing Label or HTMLLabel color. (#45)
+- Add support for GLX_EXT_swap_control on Linux platforms.
+
+
+pyglet 1.4.2
+Bugfix and cleanup release.
+
+Improvements
+------------
+- Removed broken projects from /contrib
+- Update setup.py with project_urls and long_description.
+- Added Window.get_pixel_ratio function for calculating scaling on HiDPI displays.
+- Start some code quality improvements, such as whitespace removal, star imports, etc.
+
+Bugfixes
+--------
+- Fix invalid argtype in image GDIplus decoder.
+- Change sys.is_epydoc to sys.is_pyglet_doc_run to prevent crashing with Anaconda, etc. (#9)
+- Prevent gl_info.get_version from crashing with blank version string. (#36)
+
+
+pyglet 1.4.1
+============
+Bugfix release.
+
+Bugfixes
+--------
+- #256 Fix aliases for Window.get_viewport_size/get_framebuffer_size.
+
+
+pyglet 1.4.0
+============
+Major release adding several new features and removing some long deprecated methods and attributes.
+There are also many small bugfixes, and documentation corrections. Thanks to everyone who submitted
+a pull request or contributed towards this release!
+
+Of special note, is that the 1.4 release will be the last to support Python 2. It will also be the
+last release to support Legacy OpenGL (2.x). Future pyglet releases will be Python 3 only, and will
+require at least OpenGL 3 support. If you are using pyglet on legacy systems, don't worry. The 1.4
+branch will remain available for download. Bugfixes will be backported as long as someone is willing
+to do so, but new features on the 1.4 branch are unlikely.
+
+New features
+------------
+- Added preliminary support for loading 3D models from obj files.
+- Switched from avbin to ffmpeg for decoding media files.
+
+Improvements
+------------
+- Many long deprecated methods and attributes have now been removed. These are all small
+  changes, so updating an old codebase is straightforward. The following items were removed:
+    * `sprite.set_position`. Set the X, Y coordinates via `sprite.position` instead.
+    * `next` on the Player class. This has been replaced by `next_source`.
+    * `clock.ClockDisplay`. Use `window.FPSDisplay` instead.
+    * `clock.test_clock`. This relied on deprecated behavior, and is superseded by unit tests.
+    * `font.text`. Use the `text` module instead for displaying text.
+    * `window.Platform` API. Use `canvas.get_display` or `canvas.Display` instead.
+    * `font.Win32Font` class. This has been replaced by `font.GDIPlusFont`, which was already default.
+       The class still remains, as it's subclassed by `font.GDIPlusFont`. The two should be merged.
+    * `window.event.WindowExitHandler`. This functionality is now handled by the Window itself.
+    * `image.ImageData.data` properties. Use the `get_data` and `set_data` methods instead.
+    * `image.ImageData.image_data` property. Use the `get_image_data` method instead.
+    * `image.ImageData.texture` property. Use the `get_texture` method instead.
+    * `image.ImageData.mipmapped_texture` property. Use the `get_mipmapped_texture` method instead.
+    * `image.ImageData.texture_sequence` property. Use the `get_texture_sequence` method instead.
+    * `image.Texture.delete` method. Textures are automatically released through GC.
+    * `image.Texture.image_data` property. Use the `get_image_data` method instead.
+- Playback of 24bit audio is now supported in the PulseAudio, and DirectAudio drivers. The
+  bundled Python Wave codec can also support loading of 24bit wave files. Please note that the
+  OpenAL driver does NOT support 24bit audio playback.
+- Wave decoding is now based on the Python standard library `wave` module. This is slightly more
+  forgiving when loading slightly non-compliant files.
+- Default texture min and mag filtering can be set on the Texture class. For example:
+  `pyglet.image.Texture.default_min_filter = GL_LINEAR`
+  `pyglet.image.Texture.default_mag_filter = GL_LINEAR`
+- Audio Player and Event classes now take advantage of weak references to ensure proper cleanup of
+  resources.
+- The `pyglet.resource` module now supports loading of multi-volume Zip files.
+
+Bugfixes
+--------
+- #253 Add missing self argument to Window event dispatcher methods. Fixes linter warnings.
+- #226 Loading Animations failed when a decoder was manually specified.
+- #218 Add None-check to xlib `Window.activate` to prevent crash if window is not yet created.
+- #190 Remove all usage of `past.basestring`.
+- #189 Setting the volume on audio Listeners should work on Python3 in all cases now.
+- #170 Fix for UINT point on Windows when using 32-bit Python.
+- #167 IndexedVertexDomains with non-1 primcount will now draw correctly on 64bit OSs.
+- #168 Fix StopIteration errors due to changes in behavior in Python 3.7. See PEP 479.
+- #169 Fix slow Window.flip() on Windows.
+
+
+pyglet 1.3.1
+============
+Bugfix release.
+
+Bugfixes
+--------
+- #158 Fix mouse events in mouse exclusive mode on Windows.
+- #105 Crashes in PulseAudio;
+- #163 Workaround for running inside Spyder;
+- #45  Expose viewport size for use on HiDPI screens;
+- #15  Respect keyboard layout on macOS;
+
+
+pyglet 1.3.0
+============
+This major release takes Python 3 support to the next level. The entire codebase is now compatible
+with both Python 2 and Python 3 without the need for 2to3. This should make it easier to develop
+pyglet and pyglet apps for both Python versions.
+
+The rest of this release is focussed on code quality and test coverage. There are no API breaking
+changes, and only a few minor additions. Dozens of bugs have been fixed, and the codebase is in a
+better state for future improvement and maintainability.
+
+New features
+------------
+- The procedural audio module is now more usable. This module allows synthesis of basic
+  waveforms, such as sine, square, triangle, sawtooth, and simple FM (two operator sine).
+  In addition, several basic amplitude envelopes are now available to apply to generated audio.
+  These include ADSR, linear decay, tremolo, and flat envelopes.
+
+Improvements
+------------
+- Improved font rendering for fonts with negative bearing (#99)
+- Sprites now have `scale_x` and `scale_y` attributes, allowing for aspect ratio changes. The
+  existing `scale` attribute sets the overall scaling, and functions as before.
+- Sprites have a new `update` method which allows simultaneous changing of position, scale, and
+  rotation. This reduces some overhead when changing multiple attributes at once.
+- The pyglet.resource module now defaults to a 2048x2048 texture for its internal texture atlas,
+  but will fall back to the maximum available size that the GPU can provide.
+- All modern joysticks and game controllers should now be detected on Linux and Windows.
+- Refactored and reimplemented pyglet.media. Many improvements to stability. Different drivers
+  should now behave more similar.
+- WM_CLASS hints are now set on Linux. On modern Linux desktop environments and window managers,
+  this allows for proper tracking of pyglet applications. Previously, pyglet apps may show up as
+  "Unknown" under the active window list in the environment. The window class hints are set
+  to the same name as the Window caption, but will fall back to "pyglet" if the Window caption
+  contains non-ascii characters.
+- Vastly improved documentation and programming guide.
+
+Bugfixes
+--------
+- Limit the minimum window size 1x1 pixel, preventing an OpenGL exception when resizing (#49).
+- Font module no longer leaks memory when text is changed (#66).
+- Fix crash on Python 2 when sys.argv[0] has non-ASCII characters (#74).
+- Windows: Fix crash when opening multiple windows in succession (#81).
+- Windows: Fix local font loading (#100).
+- Windows: Italic fonts no longer render parts of their neighbors.
+- Prevent memory leak from orphaned StreamingSources in long running applications (#103).
+- Windows: Fix kerning regression (#115)
+- Windows: Window.set_icon no longer fails when given a Texture instead of ImageData (#136)
+
+
+pyglet 1.2.3
+============
+Minor bugfix release.
+
+Bugfixes:
+- Windows: Fix issue where ALT key causes app to hang.
+- Media: Many fixes to PulseAudio and OpenAL media drivers (a.o. #26, #27).
+- OSX: Fix stealing the menu when already present in cocoa.
+- Fix multi texturing support (#28).
+- OSX: Prevent segfault with multiple runs (#37/GC728)
+- ArchLinux: Fix segmentation fault when using gdk_pixbuf (#25)
+
+
+pyglet 1.2.2
+============
+Minor bugfix release. Includes documentation updates for deprecated code.
+
+Bugfixes
+--------
+- BB#21: X11: Error on fontconfig cache eviction
+- BB#23: Windows: Disable ARB context on Intel devices.
+
+
+pyglet 1.2.1
+============
+Minor bugfix release. Fixes some issues on Linux.
+
+Bugfixes
+--------
+- BB#18: X11: Events not processed while animating
+- X11: on_resize event not triggered
+- X11: Fix deletion of PulseAudioPlayer.
+
+
+pyglet 1.2
+==========
+The major 1.2 release brings pyglet to Python 3. pyglet now also runs on 64-bit operating systems
+Linux, Windows and OS X. The OS X layer has switched to Cocoa.
+
+Backwards-incompatible API changes:
+* renamed Label parameter 'halign' to 'align', fix for issue:460
+* remove unused module 'glext_missing' - everything should already be in 'glext_arb'
+
+Python support
+--------------
+- 2.6 and up
+- NEW: 3.3 and up
+
+Platform support
+----------------
+- Improved win32 support
+- Windows: DirectInput support
+- OSX: Joystick support
+- Linux: GL 3 support
+- Linux: ALSA replaced by PulseAudio
+- Windows: Tablet API support
+- OSX: Tablet support
+- Linux: Tablet support
+- OSX: Cocoa support
+- OSX: Support for PyObjC 2.3
+
+Bugfixes
+--------
+- 294: pyglet.image.get_texture(rectangle=True) returns GL_TEXTURE_2D for tex.target if image is
+  POT
+- 345: image mouse cursor shows up after fullscreen switch
+- 347: vowel in Thai language did not display
+- 353: X11: Wrong keysym reported in on_key_press/release if shift pressed.
+- 355: wraptypes does not wrap hex or octal enum values properly
+- 357: Non-conforming ATI cards missing glGenBuffers
+- 358: ResourceNotFoundException has spelling error in message (in pyglet 1.1.2)
+- 361: xlib: initial mouse dx/dy incorrect if mouse on window
+- 362: Support for generic attributes are broken
+- 363: pyglet.resource no longer finds files within directories
+- 368: permission issues with some doc and example files
+- 371: pyglet.sprite uses integer coordinates for drawing
+- 376: Windows Installer Ambiguous about Supported Python Versions
+- 377: on_mouse_scroll not being called with latest pyglet revision (from svn) on vista64
+- 379: pyglet.media.drivers.alsa not in trunk r2421
+- 380: mac osx HID not working
+- 381: Missing attribute in VertexDomain when changing the group attribute of a sprite multiple
+  times
+- 382: evdev device name unicode problem
+- 387: input events stop being processed
+- 391: code cleanups for pyglet.image
+- 392: code cleanups for text and font
+- 393: code cleanup for input and app
+- 405: Virtual key codes are not mapped in OS X
+- 407: random crash with pyglet.clock.tick()
+- 408: IncrementalTextLayout, when deleted, still renders into its batch on document update
+- 409: pyglet.media.have_avbin missing in 1.2dev (svn rev 2445)
+- 411: Problem loading gif animation with alpha
+- 413: TileableTexture interchanges red and blue in some JPGs
+- 414: Carbon platform missing support for multiple mouse buttons during drag
+- 416: Endless loop in pyglet.resource.reindex()
+- 418: Vertical mouse scroll problem under windows
+- 422: Documentation: pyglet.resource and pats
+- 423: glMultiDrawElements called with incorrect arguments in method IndexedVertexDomain.draw
+- 424: Small documentation error in document layout model page
+- 426: Attempt to load resource from zipfile with no internal directory structure fail
+- 429: Exception when attributed text contains multiple trailing newlines
+- 439: EVENT_CLOSE test can't be passed
+- 440: tests/window/WINDOW_SET_MOUSE_SYSTEM_CURSOR does not exit when escape is pressed
+- 443: after the test window.EVENT_SHOW_HIDE process must be killed
+- 444: tests/resources/RES_LOAD_IMAGE opens a slew of windows and doesn't close them
+- 460: multiline label will not center align
+- 463: Min/Mag filter cannot be used with pyglets texture
+- 467: Setting the mouse position should be exposed to pyglet users
+- 471: Exception when clearing text of FormattedDocument with IncrementalTextLayout
+- 485: Wrapper generation (e.g. gengl.py) fails to parse L-prefaced character literals
+- 487: vendor specific keys on linux are crashing pyglet
+- 493: GdkPixbuf2ImageDecoder unable to decode images smaller than 1kb
+- 496: Another OpenGL 1.5 non-conforming video card
+- 510: Win-amd64 issues
+- 512: Fix missing parenthesis in docs
+- 517: tests/window/CONTEXT_SHARE.py glIsList exceptions
+- 519: Windows test log errors
+- 523: some incorrect key constants in the programming guide
+- 524: pyglet 1.2dev events do not fire on OS X
+- 529: pyglet crashes on FreeBSD-8/amd64 if fonts are used. [patch included]
+- 533: pyglet.media.Player broken on Python3
+- 536: Pitch change functionality with pulseaudio driver.
+- 538: deleting text before an InlineElement fails to adjust its position properly, causes
+  tracebacks if style changed later
+- 551: image encoder fails on python 3
+- 552: Memory leak in pyglet.image.load
+- 558: Patch for /doc/programming_guide/graphics.txt
+- 565: Race condition leads to crash calling glDeleteBuffers
+- 570: xlib 100% CPU usage after post_event
+- 571: pyglet fails for sys.platform=='linux3'
+- 572: Patch for /pyglet/lib.py
+- 579: Failing to load libraries that exist but have fatal problems is _silently_ ignored on Linux
+  and OS X.
+- 580: image.DDS_RGB_DXT1_LOAD (and similar) throw ImageException
+- 610: Wrong messages in the NOTICE file
+- 611: Mouse event incorrect on OS-X
+- 616: Mention font.Font.have_font() in proguide, and expose font.have_font() for convenience
+- 624: mouse_motion events get delivered to cocoa windows on start
+- 625: osx platform segmentation fault when opening input devices
+- 630: pyglet 1.2alpha1 with Python 3.2
+- 637: 'pulse' audio driver sets the volume to 100%
+- 638: Player set_pitch crashes with 'directaudio' driver
+- 653: Unsupported PNG color type: 3
+- 657: gdiplus.py : n_delays must be long, not float.
+- 659: image.save method doesn't catch correct Exception
+- 660: platform_event_loop.post_event doesn't work for Cocoa loop
+- 661: Player.next is converted to Player.__next__ for python3
+- 662: gamepad cannot be found in linux
+- 664: bug in font/win32query.py on win x64 (its not always occur )
+- 665: remove_handler does not remove handler
+- 668: Sync pypng with upstream
+- 671: Support for local libraries
+- 672: User preferences shouldn't use ~/.ApplicationName/ but ~/.config/AplicationName/ in Linux
+- 673: Documentation building requirements are not documented
+- 674: README errors
+- 681: Tuple slice on ImageGrid documented but not implemented
+- 682: Documentation Link on homepage is incorrect.
+- 683: Improving "contribute" page
+- 684: Displaying large font fails under very specific conditions
+- 687: Exposing _draw_list_dirty in batch API.
+- 688: Doc folder refactorization
+- 692: docstring style modifications
+- 696: 2to3 convertsizip_longest to zip_longest
+- 699: SolidColorImagePattern and CheckerImagePattern appear to fail in python3 and pyglet1.2a
+- 704: [patch] py3 compatibility problem in pyglet/graphics/__init__.py
+- 710: resource path when using
+- 715: Patch for /pyglet/image/codecs/dds.py
+- 716: FIX: Pulseaudio / ctypes on Py3k
+- 718: False "ImageDecodeException: Not a GIF stream" in python3.x
+- 719: .bmp files traceback with py3
+- 720: tests/image compatibility StringIO vs BytesIO
+- 721: compatibility py3 for tests/image TEXTURE_3D.py and TEXTURE_GRID.py
+- 722: TypeError in graphics test suite with python3.x
+- 723: py3 compatibility in tests/image MATRIX_RGB.py, MATRIX_RGBA.py
+- 724: py3 compatibility for png s (bytes vs str)
+- 727: tabs looking bad, especially in monospace fonts
+- 729: "ImportError: No module named future" in image.MATRIX_RGB test suite.
+- 731: Expectations about supported font formats
+- 734: spurious 'class plain' showing in sphinx rendering of doc/programming_guide/text.txt
+- 735: py3: BytesIO and disambiguate div for pyglet/image/__init__.py
+- 736: pyglet media fails to close PulseAudio instances
+- 737: 1.2 programming guide mentions ALSA and not Pulse
+- 739: FIX: Prevent user mouse stupidity
+- 744: expectations and exploration of fonts in Windows
+- 747: Document pyglet's "shadow window" functionality
+- 754: tests/test.py -- AttributeError: 'module' object has no attribute 'platform' (i.e. pyglet
+  has no platform)
+
+New features
+------------
+- New eventloop implementation
+- Quartz image decoder
+- Improved documentation
+- new API: font.have_font(name) return True if named font is installed

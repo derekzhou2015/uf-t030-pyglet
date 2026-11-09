@@ -1,0 +1,134 @@
+[build-system]
+requires = ["flit_core >=3.2,<5"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "pyglet"
+authors = [
+    { name = "Alex Holkner & contributors", email = "Alex.Holkner@gmail.com" },
+]
+readme = "README.md"
+license = { file = "LICENSE" }
+dynamic = ["version", "description"]
+requires-python = ">=3.8"
+
+[project.urls]
+Home = "https://pyglet.org"
+
+[tool.flit.sdist]
+# flit 4 no longer adds every git-tracked file to the sdist, so list the
+# extra files downstream packagers need (tests, docs, examples) explicitly.
+include = [
+    "RELEASE_NOTES",
+    "pytest.ini",
+    ".coveragerc",
+    "make.py",
+    "contrib/",
+    "doc/",
+    "examples/",
+    "experimental/",
+    "tests/",
+    "tools/",
+]
+exclude = [
+    "doc/_build/",
+    "**/*.log",
+]
+
+[[tool.mypy.overrides]]
+# mypy incorrectly reports issues everywhere in pyglet.math because:
+# 1. pyglet.math is almost entirely typing.NamedTuple subclasses
+# 2. The mypy project has the following long-standing stance on
+#    supporting collections.namedtuple and typing.NamedTuple:
+#    "Duplicate of #5613, still low priority, better use dataclasses,
+#    as suggested above."
+#    https://github.com/python/mypy/issues/5944#issuecomment-441285456
+module = "pyglet.math"
+ignore_errors = true
+
+[tool.ruff]
+line-length = 120
+indent-width = 4
+target-version = "py38"
+exclude = ["venv/*", ".venv/*", "build/*", "doc/*", ".github/*", "tests"]
+
+[tool.ruff.lint]
+select = ["ALL"]
+extend-safe-fixes = ["UP007", "UP006"]
+
+ignore = [
+    "C90",  # mccabe
+    "FBT",  # allow boolean args.
+    "CPY",  # copyright
+    "S101", # allow asserts.
+    "E731", # Allow lambda
+    "E741", # Allow short variable names.
+    "D102", # Do not check public method docstrings (Cannot determine overridden docstrings)
+    # @typing.override not available until python 3.12 (PEP 698)
+    "PLR",    # Too many of too many checks.
+    "ANN101", # Ignore self type annotation.
+    "ANN401", # Allow Any as type annotation
+    "D105",   # Allow no docstring magic method.
+    "SIM108", # Simplify if/else is not always best.
+    "PTH123", # allow to use `open` not `Path.open`
+    "TRY",  # no triceratops.
+    "NPY",  # remove numpy
+    "Q000",  # double quotes
+    "ERA001", # allow commented-out code
+    "EM101",  # String literals in exception
+    "B028",  # No explicit stack level in warn
+    "FIX002",  # Fixme
+    "TD003",  # Missing issue link on the line following this TODO"
+    "T201",   # allow writing print
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["pyglet"]
+required-imports = ["from __future__ import annotations"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+[tool.ruff.format]
+quote-style = "preserve"
+indent-style = "space"
+
+[tool.ruff.lint.per-file-ignores]
+# Ignore doc requirements, naming, arguments in platform and lib files.
+"pyglet/font/fontconfig.py" = ["RUF012", "D", "N", "ARG"]
+"pyglet/font/freetype.py" = ["RUF012", "D", "N", "ARG"]
+"pyglet/font/freetype_lib.py" = ["RUF012", "D", "N", "ARG"]
+"pyglet/font/quartz.py" = ["RUF012", "D", "N", "ARG"]
+"pyglet/font/ttf.py" = ["RUF012", "D", "N", "ARG"]
+"pyglet/font/win32.py" = ["RUF012", "D", "N", "ARG"]
+"pyglet/window/cocoa/*" = ["RUF012", "D", "N", "ARG"]
+"pyglet/window/headless/*" = ["RUF012", "D", "N", "ARG"]
+"pyglet/window/win32/*" = ["RUF012", "D", "N", "ARG"]
+"pyglet/window/xlib/*" = ["RUF012", "D", "N", "ARG"]
+"pyglet/gui/*" = ["ARG002"]
+"pyglet/libs/*" = ["RUF012", "D", "N", "ARG"]
+"pyglet/lib.py" = ["ANN", "ARG002", "T201"]
+"pyglet/gl/*" = ["N816", "I001", "N801", "E501", "D"]
+"pyglet/__init__.py" = ["PGH003"]
+"examples/*" = [
+    "I",
+    "D",
+    "B",
+    "W",
+    "S",
+    "ANN",
+    "ARG",
+    "E501",
+    "INP001",
+    "F811",
+    "PLW0602",
+    "PLW0604",
+    "SLF001",
+    "ERA001",
+    "F405",
+]
+"tests/*" = ["I", "E", "F", "D", "B", "W", "S", "ANN", "ARG"]
+"*_lib.py" = ["RUF012", "D", "N", "ARG"]

@@ -1,0 +1,87 @@
+_model: single-layout
+---
+show_home_nav: true
+---
+hero_title: pyglet
+---
+hero_description: Welcome to the website of the <b>pyglet</b> project!
+---
+hero_image: eclipse.jpg
+---
+starting_block_bg: light
+---
+main_content:
+
+#### content ####
+title: About
+----
+description: The cross-platform windowing and multimedia library for Python.
+----
+nav_label: About
+----
+section_id: overview
+----
+content:
+
+**pyglet** is a powerful yet easy-to-use Python library for developing games and other visually rich applications on Windows, macOS, and Linux. It supports windowing, mouse and keyboard, controllers, joysticks, displaying images and videos, and playing sounds and music. All of this with a friendly Pythonic API that's simple to learn and doesn't get in your way. For advanced users, OpenGL bindings are directly accessible. User-friendly abstractions for Shaders, FrameBuffers, and other common OpenGL objects are also available. 
+
+pyglet is provided under the BSD open-source license, allowing you to use it for both commercial and other open-source projects with very little restriction.
+
+Read the documentation at https://pyglet.readthedocs.io and visit us on:
+----
+button_content: Github
+----
+button_type: text
+----
+button_link: https://github.com/pyglet/pyglet
+#### services ####
+title: Features
+----
+description: 
+----
+nav_label: Features
+----
+section_id: features
+----
+video_url: 
+----
+services:
+
+##### service #####
+title: No external dependencies
+-----
+description:
+
+No external dependencies or installation requirements. For most applications and games, pyglet needs nothing else besides Python, simplifying distribution and installation. This makes it easy to package your project with freezers such as PyInstaller or other popular packaging tools. You can even copy the pyglet package directly into your project folder and make a [zipapp](https://docs.python.org/3/library/zipapp.html). 
+-----
+icon: flexible-design.png
+##### service #####
+title: Flexible native windowing
+-----
+description:
+
+pyglet provides platform native windows, allowing you to take advantage of multiple windows and multi-monitor desktops. You have as much control over how your application or game is displayed as the platform allows. Create multiple floating windows, or single  windows with hints over which monitor they appear on, full screen or windowed. 
+-----
+icon: responsive-layout.png
+##### service #####
+title: Built-in support for loading images and audio
+-----
+description: pyglet contains built-in decoders for standard formats such as wav, png, bmp, dds, and others. Platform libraries (MediaFoundation, GStreamer, CoreAudio) are also used to provide support for additional formats, such as mp3, ogg, etc. If that's not sufficient, pyglet can optionally use FFmpeg to play back virtually any audio or video format that it supports.
+-----
+icon: 
+##### service #####
+title: Written in pure Python
+-----
+description:
+
+pyglet is written entirely in pure Python, and makes use of the ctypes module to directly interface with system libraries. This makes it easy to modify the code-base, or make a contribution without any compilation steps or knowledge of another language. Despite being pure Python, pyglet has excellent performance thanks to advanced batching and GPU rendering. You can easily draw thousands of sprites or animations. 
+-----
+icon: 
+##### service #####
+title: Extensive input support
+-----
+description:
+
+In addition to mouse and keyboard, a variety of general input devices (HID) are supported with an event driven API. This includes devices like joysticks that have arbitrary numbers of buttons and axis, and modern dual-analog stick game controllers. Game controllers support rumble (force feedback), and automatic button mapping. A high level *ControllerManager* is available that lets you easily support hot-plugging of controllers. 
+-----
+icon: 
