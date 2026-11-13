@@ -408,6 +408,18 @@ class _AbstractBox(ABC):
         ...
 
 
+def _round_advance(kern: float, glyph: Glyph, glyph_pos: GlyphPosition) -> int:
+    """Return the pixel-rounded advance used to position and measure a glyph.
+
+    Glyphs are positioned with per-glyph pixel rounding (see :class:`_GlyphBox`), while
+    font metrics and shaping offsets are fractional.  Line fitting has to use the same
+    rounded values as the renderer: accumulating raw fractional advances lets rounding
+    error push a line that renders exactly as wide as the layout width past the wrap
+    threshold, while a truly overflowing line may round down to fit.
+    """
+    return round(kern) + round(glyph.advance + glyph_pos.x_advance)
+
+
 class _GlyphBox(_AbstractBox):
     owner: Texture
     font: Font
@@ -440,7 +452,7 @@ class _GlyphBox(_AbstractBox):
     @staticmethod
     def _glyph_advance(kern: float, glyph: Glyph, glyph_pos: GlyphPosition) -> int:
         """Return the pixel-rounded advance used to position glyph quads."""
-        return round(kern) + round(glyph.advance + glyph_pos.x_advance)
+        return _round_advance(kern, glyph, glyph_pos)
 
     def _add_vertex_list(self, vertex_list: _LayoutVertexList | VertexList, context: _LayoutContext) -> None:
         self.vertex_lists.append(vertex_list)
@@ -1712,7 +1724,9 @@ class TextLayout:
         if self._wrap_lines:
             width = self._width - line.margin_left - line.margin_right
 
-        # Current right-most x position in line being laid out.
+        # Current right-most x position in line being laid out.  This accumulates the
+        # pixel-rounded advances used to place the glyphs, so that it always matches the
+        # rendered line width instead of drifting through fractional font metrics.
         x = 0
 
         # Boxes accumulated but not yet committed to a line.
@@ -1776,13 +1790,14 @@ class TextLayout:
 
                     owner_accum.append((kern, glyph, offset))
                     owner_accum_commit.extend(owner_accum)
-                    owner_accum_commit_width += owner_accum_width + glyph.advance + kern + offset.x_advance
-                    eol_ws += glyph.advance + kern + offset.x_advance
+                    advance = _round_advance(kern, glyph, offset)
+                    owner_accum_commit_width += owner_accum_width + advance
+                    eol_ws += advance
 
                     owner_accum = []
                     owner_accum_width = 0
 
-                    x += glyph.advance + kern + offset.x_advance
+                    x += advance
                     index += 1
 
                     # The index at which the next line will begin (the
@@ -1792,7 +1807,8 @@ class TextLayout:
                 else:
                     new_paragraph = text in "\n\u2029"
                     new_line = (text == "\u2028") or new_paragraph
-                    if (wrap and self._wrap_lines and x + kern + glyph.advance + offset.x_advance >= width) or new_line:
+                    advance = _round_advance(kern, glyph, offset)
+                    if (wrap and self._wrap_lines and x + advance > width) or new_line:
                         # Either the pending runs have overflowed the allowed
                         # line width or a newline was encountered.  Either
                         # way, the current line must be flushed.
@@ -1882,8 +1898,8 @@ class TextLayout:
                         # If the glyph was any non-whitespace, non-newline
                         # character, add it to the pending run.
                         owner_accum.append((kern, glyph, offset))
-                        owner_accum_width += glyph.advance + kern + offset.x_advance
-                        x += glyph.advance + kern + offset.x_advance
+                        owner_accum_width += advance
+                        x += advance
                     index += 1
                     eol_ws = 0
 
